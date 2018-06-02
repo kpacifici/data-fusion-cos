@@ -6,7 +6,7 @@ source('Scripts/Single/data-prep.R')
 BD <- "path-to-winbugs-on-your-machine"
 
 
-### ### ### ### ### ##### ### ### ### ### ###
+### ### ### ### ### ### ### ### ### ### ### ###
 
 # MCMC Settings #
 ni = 50000  # Number of iterations
@@ -14,7 +14,7 @@ nb = 10000  # Number of burn-ins
 nt = 50     # Number of thins
 nc = 3      # Number of chains
 
-### ### ### ### ### ##### ### ### ### ### ### 
+### ### ### ### ### ### ### ### ### ### ### ### 
 
 # Prepare data, set initial values, and indicate which values to be returned from BUGS #
 
@@ -56,9 +56,9 @@ nc = 3      # Number of chains
   out <- bugs(data = car.data,
               inits = car.inits,
               parameters.to.save = car.parameters,
-              model.file = 'Models/single.txt',
+              model.file = here('Models/single.txt'),
               n.thin = nt, n.iter = ni, n.burnin = nb, n.chain = nc,
               bugs.dir = BD,
-              working.directory = 'Output',
+              working.directory = here('Output'),
               debug = TRUE)
 
