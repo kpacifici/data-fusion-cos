@@ -1,6 +1,8 @@
 ## Preamble ##
 require(R2WinBUGS)
 
+source('Scripts/Single/data-prep.R')
+
 BD <- "path-to-winbugs-on-your-machine"
 
 
@@ -27,15 +29,15 @@ nc = 3      # Number of chains
       # cell = A vector listing the ID numbers of the point-level sampling locations within a particular cell. 
       # nsite = An integer value for the number of point-level sampling locations.
       # forest = A vector of length ncell. This can be any covariate(s) of interest, we used average forest cover in a grid cell.
-  
-  car.data <- list (Y = detections_of_your_species,       
-                    num = number_of_neighbors_for_each_cell, 
-                    adj = which_cell_is_a_neighbor,
-                    weights = weight_of_each_neighbor,
-                    ncell = number_of_areas_of_interest_for_secondary_data_source,
-                    cell = which_cell_does_a_point_fall_in,
-                    nsite = number_of_primary_sampling_locations,
-                    forest = covariate_of_interest_for_each_cell)
+
+  car.data <- list (Y = grid1$total.dets,              # Detections of focal species       
+                    num = grid1.wbnb$num,              # Number of neighbors for each cell
+                    adj = grid1.wbnb$adj,              # Which cell is a neighbor 
+                    weights = grid1.wbnb$weights,      # Weight of each neighbor
+                    ncell = length(grid1.wbnb$num),    # No. of grid cells for 2nd data source
+                    cell = grid1$nearest_block_BBA_ID, # Which cell is point located in
+                    nsite = nrow(grid1),               # No. of primary data points
+                    forest = centroids@data$Forest1)   # Covariate of interest at cell resolution
   
   #Set initial values
   car.inits <- function() {
