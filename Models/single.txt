@@ -1,0 +1,39 @@
+model {
+
+### BBA model
+### priors
+
+alpha ~ dnorm(0,0.01)
+tau.cell <- pow(sig.cell,-2)
+sig.cell ~ dunif(0,8)
+p ~ dunif(0,1)
+b.elev ~ dnorm(0,0.01)
+b.forest ~ dnorm(0,0.01)
+
+### CAR model
+
+
+spacesigma ~ dnorm(0,0.01)I(0,5)
+spacetau <- 1/(spacesigma*spacesigma)
+S[1:ncell] ~ car.normal(adj[],weights[],num[],spacetau)
+ 
+
+### data model
+
+for (i in 1:ncell){
+    logit(psi[i]) <- S[i] + alpha + b.forest*forest[i]
+}
+
+for (j in 1:nsite){
+    z[j] ~ dbern(psi[cell[j]])
+		muy[j] <- z[j]*p
+		Y[j] ~ dbin(muy[j],5)
+}
+
+
+}
+
+
+
+
+ 

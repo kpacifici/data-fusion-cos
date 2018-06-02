@@ -1,0 +1,40 @@
+model {
+
+# MV CAR prior for the spatial random effects 
+# MVCAR prior 
+
+S[1:ncell] ~ car.normal(adj[], weights[], num[], tau)
+
+alpha ~ dflat()
+sd~dunif(0,5)
+tau <- pow(sd,2)
+#tau~dgamma(1,1)
+
+# double-check mean = 0
+mean1 <- mean(S[])
+
+### BBA model
+### priors
+
+p ~ dunif(0,1)
+b.effort ~ dnorm(0,0.01)
+b.forest ~ dnorm(0,0.01)
+b.count ~ dnorm(0,0.01)
+
+### data model
+
+for (i in 1:ncell){
+    logit(psi[i]) <- S[i] + alpha + b.forest*forest[i] + b.effort*effort[i] + b.count*count[i]
+}
+for (j in 1:nsite){
+    z[j] ~ dbern(psi[cell[j]])
+		muy[j] <- z[j]*p
+		Y[j] ~ dbin(muy[j],5)
+	}
+
+}
+
+
+
+
+ 

@@ -1,0 +1,41 @@
+    model{
+    
+    #CAR prior for spatial random effects
+    S[1:ncell]~car.normal(adj[], weights[], num[], tau)
+    
+    
+    spacesigma ~ dnorm(0,0.01)I(0,5)
+    tau <- 1/(spacesigma*spacesigma)
+    
+    
+    ##Other priors
+    alpha ~ dnorm(0,0.01)
+    p~dunif(0,1)
+    b.forest~dnorm(0,0.01)
+    
+    
+    ## Not needed
+    #tau~dgamma(1.0E-1,1.0E-1)
+    mean1<-mean(S[])
+    
+    
+    
+    
+    
+    for(i in 1:ncell){
+    log(lambda[i]) <- S[i] + alpha + b.forest*forest[i]
+    psi[i]         <- 1-exp(-lambda[i])
+    }
+    
+    for (j in 1:nsite){
+    z[j]    ~ dbern(psi[cell[j]])
+    muy[j] <- z[j]*p
+    Y[j]    ~ dbin(muy[j],5)
+    }
+    
+    for (i in 1:ncell_eb){
+    muP[i] <- E[i]*sum(lambda[low[i]:high[i]])
+    W[i]    ~ dpois(muP[i])
+    }
+    
+}

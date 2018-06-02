@@ -1,0 +1,55 @@
+
+model{
+
+    # MV CAR prior for the spatial random effects 
+    # MVCAR prior 
+    
+    S[1:2, 1:ncell] ~ mv.car(adj[], weights[], num[], omega[ , ])
+    
+    # Other priors
+    for (k in 1:2) {
+    alpha[k] ~ dflat()
+    }
+    # Precision matrix of MVCAR 
+    omega[1:2, 1:2] ~ dwish(R[ , ], 2)
+    
+    # Covariance matrix of MVCAR   
+    sigma2[1:2, 1:2] <- inverse(omega[ , ])
+    
+    # conditional SD of S[1, ] 
+    sigma[1] <- sqrt(sigma2[1, 1])
+    
+    # conditional SD of S[2,] 
+    sigma[2] <- sqrt(sigma2[2, 2])
+    
+    # within-area conditional correlation 
+    corr <- sigma2[1, 2] / (sigma[1] * sigma[2])
+    
+    # double-check mean = 0
+    mean1 <- mean(S[1,])
+    mean2 <- mean(S[2,])
+    
+    p~dunif(0,1)
+    b.forest1~dnorm(0,0.01)
+    b.forest2~dnorm(0,0.01)
+          
+
+    for(i in 1:ncell){
+    log(lambda1[i]) <- S[1,i] + alpha[1] + b.forest1*forest[i]
+    log(lambda2[i]) <- S[2,i] + alpha[2] + b.forest2*forest[i]
+    psi[i] <- 1-exp(-lambda1[i])
+    }
+    
+    for (j in 1:nsite){
+    z[j]    ~ dbern(psi[cell[j]])
+    muy[j] <- z[j]*p
+    Y[j]    ~ dbin(muy[j],5)
+    }
+    
+    for (i in 1:ncell_eb){
+    muP[i] <- E[i]*sum(lambda2[low[i]:high[i]])
+    W[i] ~dpois(muP[i])
+    }
+    
+ 
+}

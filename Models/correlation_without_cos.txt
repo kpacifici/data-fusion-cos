@@ -1,0 +1,60 @@
+
+    model {
+    
+    # MV CAR prior for the spatial random effects 
+    # MVCAR prior 
+    
+    S[1:2, 1:ncell] ~ mv.car(adj[], weights[], num[], omega[ , ])
+    
+    # Other priors
+    for (k in 1:2) {
+    alpha[k] ~ dflat()
+    }
+    # Precision matrix of MVCAR 
+    omega[1:2, 1:2] ~ dwish(R[ , ], 2)
+    
+    # Covariance matrix of MVCAR   
+    sigma2[1:2, 1:2] <- inverse(omega[ , ])
+    
+    # conditional SD of S[1, ] 
+    sigma[1] <- sqrt(sigma2[1, 1])
+    
+    # conditional SD of S[2,] 
+    sigma[2] <- sqrt(sigma2[2, 2])
+    
+    # within-area conditional correlation 
+    corr <- sigma2[1, 2] / (sigma[1] * sigma[2])
+    
+    # double-check mean = 0
+    mean1 <- mean(S[1,])
+    mean2 <- mean(S[2,])
+    
+    
+    ### BBA model
+    ### priors
+    
+    p ~ dunif(0,1)
+    b.forest ~ dnorm(0,0.01)
+    
+    ### data model
+    
+    for (i in 1:ncell){
+    logit(psi[i]) <- S[1,i] + alpha[1] + b.forest*forest[i]
+    }
+    for (j in 1:nsite){
+    z[j] ~ dbern(psi[cell[j]])
+    muy[j] <- z[j]*p
+    Y[j] ~ dbin(muy[j],5)
+    }
+    
+    ### eBird Model
+    ### Data Model
+    
+    for (i in 1:ncell){
+    log(lambda[i]) <- S[2,i] + alpha[2]
+    muP[i] <- E[i]*lambda[i]
+    W[i] ~ dpois(muP[i])
+    }
+
+}
+    
