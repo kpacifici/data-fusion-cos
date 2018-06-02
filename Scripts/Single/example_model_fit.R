@@ -56,9 +56,9 @@ nc = 3      # Number of chains
   out <- bugs(data = car.data,
               inits = car.inits,
               parameters.to.save = car.parameters,
-              model.file = "single.txt",
+              model.file = 'Models/single.txt',
               n.thin = nt, n.iter = ni, n.burnin = nb, n.chain = nc,
               bugs.dir = BD,
-              working.directory = getwd(),
+              working.directory = 'Output',
               debug = TRUE)
 
