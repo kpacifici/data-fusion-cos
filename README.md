@@ -2,7 +2,7 @@
 
 ### Krishna Pacifici, Brian Reich, David Miller, and Brent Pease  
 
-### Please contact Brent Pease (bspease@ncsu.edu) for questions about the code or data  
+### Please contact Krishna Pacifici (jkpacifi@ncsu.edu) for questions about the code or data  
 
 ---  
 
