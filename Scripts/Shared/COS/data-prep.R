@@ -1,7 +1,10 @@
 # Supress package warnings for data prep script
 options(warn = -1)
 
-
+library(sp)
+library(data.table)
+library(rgeos)
+library(spdep)
 
 
 ### ### ### ### ### ### ### ### ###
@@ -17,7 +20,6 @@ options(warn = -1)
 block <- data.table::fread("Data/BlockCovariates.csv") # Grid information (Covariates associated with each grid cell)
 bba <- data.table::fread("Data/BBA.csv")               # Breeding Bird Atlas information (Primary data source)
 ebird <- data.table::fread('Data/eBird.csv')           # eBird Information (Secondary data source - coarser resolution)
-
 
 # First, need to spatially align all data so that their Key matches in the data frames and in space
 
