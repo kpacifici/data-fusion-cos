@@ -24,7 +24,8 @@ Key words: change of support, occupancy modeling, integrated distribution modeli
     *Correlation - CoS and No CoS    
     *Covariate    
     *Single    
-3.    
+3. Output - folder to store winBUGS output    
+4. Scripts - folder containing `R` scripts for data prep and 
 
 
 
