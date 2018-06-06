@@ -14,5 +14,6 @@ Key words: change of support, occupancy modeling, integrated distribution modeli
 ## Folder structure and file contents
 
 1. Data - contains primary data files    
-    *BBA
+    *BBA = Breeding bird atlas data from Pennsylvania, USA for black-and-white warblers (Mniotilta varia). This serves as the primary data source.
+    *
 
