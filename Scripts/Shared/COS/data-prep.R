@@ -54,7 +54,7 @@ proj4string(bba) <- CRS("+init=epsg:4326")
 # The value returned is the row name from `centroids`
 bba$nearest_block_BBA_ID <- apply(rgeos::gDistance(centroids, bba, byid = TRUE), 1, which.min)
 
-# Add centroid info for grid cells (ART 30 seconds)
+# Add centroid ID for grid cells (ART 30 seconds)
 block$nearest_block_BBA_ID <- apply(gDistance(centroids, block, byid = TRUE), 1, which.min)
 
 # Merge point-level information with grid level data
