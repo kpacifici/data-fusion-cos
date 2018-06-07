@@ -7,6 +7,7 @@ BD <-  "path-to-winbugs-on-your-machine"
 
 # Load point-level (primary) data, neighborhood information, 
 # grid (secondary) data, and grid assignment information.
+### See GitHub README for file descripions ###
 
 block <- fread('Data/BlockCovariates_cleaned.csv')
 coarse.block <- fread('Data/coarse_block.csv')
@@ -16,9 +17,9 @@ load('Data/high.Rdata')
 load('Data/low.Rdata')
 load('Data/grid1.wbnb.Rdata')
 
-### FILE DESCRIPTIONS ###
 
-# Block = 
+
+
 
 ### ### ### ### ### ### ### ### ### ### ### ###
 
