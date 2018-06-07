@@ -14,22 +14,18 @@ Interest in evaluating how species respond to changing environmental conditions 
 ## Folder structure and file contents
 
 1. Data - contains primary data files    
-    *BBA.csv = Breeding bird atlas data from Pennsylvania, USA for black-and-white warblers (Mniotilta varia). This serves as the primary data source.    
-    *BlockCovariates.csv = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information)    
-    *eBird.csv = eBird data for black-and-white warblers across Pennsylvania. This serves as the secondary data source that we integrate with our primary data.    
-    *grid1.wbnb.Rdata = Spatial neighborhood information for the finest grid.    
-    *grid1_allpoints.csv = *edited* BBA data that contains columns allowing a point to be assigned to a grid.    
+   * BBA.csv = Breeding bird atlas data from Pennsylvania, USA for black-and-white warblers (Mniotilta varia). This serves as the primary data source.    
+   * BlockCovariates.csv = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information)    
+   * eBird.csv = eBird data for black-and-white warblers across Pennsylvania. This serves as the secondary data source that we integrate with our primary data.    
+   * grid1.wbnb.Rdata = Spatial neighborhood information for the finest grid.    
+   * grid1_allpoints.csv = *edited* BBA data that contains columns allowing a point to be assigned to a grid.    
 2. Models - contains winBUGS code for data fusion models    
-    *Shared - Change of Support (CoS) and No CoS    
-    *Correlation - CoS and No CoS    
-    *Covariate    
-    *Single    
+   * Shared - Change of Support (CoS) and No CoS    
+   * Correlation - CoS and No CoS    
+   * Covariate    
+   * Single    
 3. Output - folder to store winBUGS output    
 4. Scripts - folder containing `R` scripts for data prep and 
 
 
-1. Item
-2. Item
-   * Mixed
-   * Mixed  
-3. Item
+
