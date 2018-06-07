@@ -14,7 +14,7 @@ Interest in evaluating how species respond to changing environmental conditions 
 ## Folder structure and file contents
 
 1. **Data** - contains primary data files    
-   * BBA.csv = Breeding bird atlas data from Pennsylvania, USA for black-and-white warblers (Mniotilta varia). This serves as the primary data source.    
+   * BBA.csv = Breeding bird atlas data from Pennsylvania, USA for black-and-white warblers (Mniotilta varia). This serves as the primary data source. This is the original, unedited data file.   
    * BlockCovariates.csv = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information)    
    * eBird.csv = eBird data for black-and-white warblers across Pennsylvania. This serves as the secondary data source that we integrate with our primary data.    
    * grid1.wbnb.Rdata = Spatial neighborhood information for the finest grid.    
