@@ -1,7 +1,10 @@
 ## Preamble ##
 require(R2WinBUGS)
 
-source('Scripts/Single/data-prep.R')
+#Load BBA data, grid neighborhood, and grid covariates
+grid1 <- fread('Data/BBA_cleaned.csv')
+block <- fread('Data/GridCovariates_CoS.csv')
+load('Data/grid1.wbnb.Rdata')
 
 BD <- "path-to-winbugs-on-your-machine"
 
@@ -37,7 +40,7 @@ nc = 3      # Number of chains
                     ncell = length(grid1.wbnb$num),    # No. of grid cells for 2nd data source
                     cell = grid1$nearest_block_BBA_ID, # Which cell is point located in
                     nsite = nrow(grid1),               # No. of primary data points
-                    forest = centroids@data$Forest1)   # Covariate of interest at cell resolution
+                    forest = block$Forest1)   # Covariate of interest at cell resolution
   
   #Set initial values
   car.inits <- function() {
