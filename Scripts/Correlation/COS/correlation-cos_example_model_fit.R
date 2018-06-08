@@ -9,10 +9,10 @@ BD <-  "path-to-winbugs-on-your-machine"
 # grid (secondary) data, and grid assignment information.
 ### See GitHub README for file descripions ###
 
-block <- fread('Data/BlockCovariates_cleaned.csv')
-coarse.block <- fread('Data/coarse_block.csv')
+block <- fread('Data/GridCovariates_CoS.csv')
+coarse.block <- fread('Data/eBird_grid.csv')
 greater_cells <- fread('Data/gridsize_assignment.csv')
-grid1 <- fread('Data/grid1_allpoints.csv')
+grid1 <- fread('Data/BBA_cleaned.csv')
 load('Data/high.Rdata')
 load('Data/low.Rdata')
 load('Data/grid1.wbnb.Rdata')
