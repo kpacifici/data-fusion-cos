@@ -25,7 +25,8 @@ Interest in evaluating how species respond to changing environmental conditions 
    * *coords.Rdata* = This file is for the covariate model. Coordinates of eBird grid cells.  
    * *EE.Rdata* = This file is for the covariate model. smoothed eBird effort using `mgcv::gam`    
    * *YY.Rdata* = This file is for the covariate model. Smoothed eBird counts using `mgcv::gam`    
-   2. **Models** - contains winBUGS code for data fusion models    
+   
+2. **Models** - contains winBUGS code for data fusion models    
    * *Shared* - Change of Support (CoS) and No CoS    
    * *Correlation* - CoS and No CoS    
    * *Covariate*    
