@@ -5,8 +5,9 @@ library(here)
 BD <-  "path-to-winbugs-on-your-machine"
 
 #Load point-level (primary) data, neighborhood information, and grid (secondary) data
-source('Scripts/Correlation/NO_COS/data-prep.R') # (ART 1 minute)
-
+block <- fread('Data/GridCovariates_No_CoS.csv')
+grid1 <- fread('Data/BBA_cleaned.csv')
+load('Data/grid1.wbnb.Rdata')
 
 ### ### ### ### ### ### ### ### ### ### ### ###
 
@@ -22,9 +23,20 @@ nc = 3
 
 
 #Bundle data
+#Values needed:
+# Y = A vector with length equal to number of sampling locations (nsite) containing information about counts of detections of focal species. Range of Integer value = (0, number of visits)
+# E = A vector with length equal to the number of grid cells (ncell) containing summarized effort for secondary data source
+# W = A vector with length equal to the number of grid cells (ncell) containing summarized effort for secondary data source for grid with coarser resolution than primary data
+# num = A vector of length ncell (number of grid cells) giving the number of neighbors for each cell
+# adj = A vector listing the ID numbers of the adjacent cells for each cell.
+# weights = A vector of length `adj` giving unnormalized wights associated with each pair of cells. 
+# ncell = An integer value for the number of grid cells for the primary data source (finest resolution)
+# cell = A vector listing the ID numbers of the point-level sampling locations within a particular cell. 
+# nsite = An integer value for the number of point-level sampling locations.
+# forest = A vector of length ncell. This can be any covariate(s) of interest, we used average forest cover in a grid cell.
+# R = Required for the MV CAR. See WinBUGS documentation.
 
-car.data <- list(R = matrix(c(0.02,0,0,0.02),2,2),
-                 Y = grid1$total.dets,
+car.data <- list(Y = grid1$total.dets,
                  E = block$avg.eHours,
                  W = block$avg.eCount,
                  num = grid1.wbnb$num, 
@@ -33,7 +45,8 @@ car.data <- list(R = matrix(c(0.02,0,0,0.02),2,2),
                  ncell = length(grid1.wbnb$num),
                  cell = grid1$nearest_block_BBA_ID,
                  nsite = nrow(grid1),
-                 forest = block$Forest1)
+                 forest = block$Forest1,
+                 R = matrix(c(0.02,0,0,0.02),2,2))
 
 
 #Set initial values
