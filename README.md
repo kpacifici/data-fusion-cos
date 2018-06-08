@@ -15,16 +15,15 @@ Interest in evaluating how species respond to changing environmental conditions 
 
 1. **Data** - contains data files needed to fit models in winBUGS   
    * *BlockCovariates_cleaned.csv* = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information) 
-   * *coarse_block.csv* = eBird data for black-and-white warblers (Mniotilta varia) in Pennsylvania, USA summarized within misaligned grid cells.
+   * *coarse_block.csv* = eBird data for black-and-white warblers (*Mniotilta varia*) in Pennsylvania, USA summarized within misaligned grid cells.
    * *grid1.wbnb.Rdata* = Spatial neighborhood information for the finest grid.    
-   * *grid1_allpoints.csv* = Breeding bird atlas data from Pennsylvania, USA for black-and-white warblers. This serves as the primary data source.   
+   * *grid1_allpoints.csv* = Breeding Bird Atlas data from Pennsylvania, USA for black-and-white warblers. This serves as the primary data source.    
 2. **Models** - contains winBUGS code for data fusion models    
-   * Shared - Change of Support (CoS) and No CoS    
-   * Correlation - CoS and No CoS    
-   * Covariate    
-   * Single    
-3. **Output** - folder to store winBUGS output    
-4. **Scripts** - folder containing `R` scripts for fitting each model
+   * *Shared* - Change of Support (CoS) and No CoS    
+   * *Correlation* - CoS and No CoS    
+   * *Covariate*    
+   * *Single*     
+3. **Scripts** - folder containing `R` scripts for fitting models
 
 
 
