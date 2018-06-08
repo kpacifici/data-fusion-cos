@@ -1,5 +1,6 @@
 ## Preamble ##
 require(R2WinBUGS)
+library(data.table)
 
 #Load BBA data, grid neighborhood, and grid covariates
 grid1 <- fread('Data/BBA_cleaned.csv')
