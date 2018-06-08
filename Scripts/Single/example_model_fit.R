@@ -3,6 +3,7 @@ require(R2WinBUGS)
 library(data.table)
 
 #Load BBA data, grid neighborhood, and grid covariates
+### See GitHub README for file descriptions ###
 grid1 <- fread('Data/BBA_cleaned.csv')
 block <- fread('Data/GridCovariates_CoS.csv')
 load('Data/grid1.wbnb.Rdata')
@@ -63,6 +64,6 @@ nc = 3      # Number of chains
               model.file = here('Models/single.txt'),
               n.thin = nt, n.iter = ni, n.burnin = nb, n.chain = nc,
               bugs.dir = BD,
-              working.directory = here('Output'),
+              working.directory = getwd(),
               debug = TRUE)
 
