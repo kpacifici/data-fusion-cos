@@ -1,5 +1,6 @@
 ## Dependencies ##
 library(R2WinBUGS)
+library(data.table)
 library(here)
 
 BD <-  "path-to-winbugs-on-your-machine"
