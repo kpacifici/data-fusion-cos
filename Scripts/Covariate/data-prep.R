@@ -156,7 +156,7 @@ grid1.wbnb <- spdep::nb2WB(grid1.nb)
 
 # Read in prepped bba data
 # See data-prep script in Shared COS for steps on cleaning this file
-grid1 <- fread('Data/grid1_allpoints.csv')
+grid1 <- fread('Data/BBA_cleaned.csv')
 
 rm(coarse.block, fine.block, dist, ebird, grid1.nb,bba, centroids)
 #Restore original warning setting
