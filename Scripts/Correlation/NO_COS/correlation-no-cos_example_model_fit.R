@@ -76,5 +76,5 @@ out <- bugs(data = car.data,
             n.iter = ni,
             n.burnin = nb,
             bugs.dir = BD,
-            working.directory = here('Output'),
+            working.directory = getwd(),
             debug = F)
