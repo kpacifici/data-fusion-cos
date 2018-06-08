@@ -14,10 +14,14 @@ Interest in evaluating how species respond to changing environmental conditions 
 ## Folder structure and file contents
 
 1. **Data** - contains data files needed to fit models in winBUGS   
-   * *BlockCovariates_cleaned.csv* = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information) 
-   * *coarse_block.csv* = eBird data for black-and-white warblers (*Mniotilta varia*) in Pennsylvania, USA summarized within misaligned grid cells.
+   * *BBA_cleaned.csv* = Breeding Bird Atlas data from Pennsylvania, USA for black-and-white warblers. This serves as the primary data source.    
+   * *eBird_grid.csv* = eBird data for black-and-white warblers (*Mniotilta varia*) in Pennsylvania, USA summarized within misaligned grid cells.    
+   * *GridCovariates_CoS.csv* = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information). This file should be used with the **Change of Support** models. 
+   * *GridCovariates_No_CoS.csv* = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information). This file should be used with **No Change of Support** models.    
    * *grid1.wbnb.Rdata* = Spatial neighborhood information for the finest grid.    
-   * *grid1_allpoints.csv* = Breeding Bird Atlas data from Pennsylvania, USA for black-and-white warblers. This serves as the primary data source.    
+   * *gridsize_assignment.csv* = This file is for Change of Support models. Informs winBUGS which finer grid cells are contained within coarser grid cells.    
+   * *high.Rdata* = This file is for Change of Support models. Informs winBUGS how many finer grid cells are within coarser grid cells.    
+   * *low.Rdata* = This file is for Change of Support models. Informs winBUGS how many finer grid cells are within coarser grid cells.    
 2. **Models** - contains winBUGS code for data fusion models    
    * *Shared* - Change of Support (CoS) and No CoS    
    * *Correlation* - CoS and No CoS    
