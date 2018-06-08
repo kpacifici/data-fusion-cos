@@ -1,14 +1,16 @@
 ## Preamble ##
 require(R2WinBUGS)
 library(data.table)
+library(here)
+
+BD <- "path-to-winbugs-on-your-machine"
 
 #Load BBA data, grid neighborhood, and grid covariates
 ### See GitHub README for file descriptions ###
+
 grid1 <- fread('Data/BBA_cleaned.csv')
 block <- fread('Data/GridCovariates_CoS.csv')
 load('Data/grid1.wbnb.Rdata')
-
-BD <- "path-to-winbugs-on-your-machine"
 
 
 ### ### ### ### ### ### ### ### ### ### ### ###
