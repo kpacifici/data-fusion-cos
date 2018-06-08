@@ -5,6 +5,8 @@ library(here)
 BD <-  "path-to-winbugs-on-your-machine"
 
 #Load point-level (primary) data, neighborhood information, and grid (secondary) data
+### See GitHub README for file descriptions ###
+
 block <- fread('Data/GridCovariates_No_CoS.csv')
 grid1 <- fread('Data/BBA_cleaned.csv')
 load('Data/grid1.wbnb.Rdata')
@@ -26,6 +28,18 @@ nc = 3
 
 
 #Bundle data
+#Values needed:
+# effort = A vector with length equal to the number of grid cells (ncell) containing smoothed surface from `mgcv::gam` of eBird effort across area of interest 
+# count = A vector with length equal to the number of grid cells (ncell) containing smoothed surface from `mgcv::gam` of eBird counts across area of interest
+# Y = A vector with length equal to number of sampling locations (nsite) containing information about counts of detections of focal species. Range of Integer value = (0, number of visits)
+# num = A vector of length ncell (number of grid cells) giving the number of neighbors for each cell
+# adj = A vector listing the ID numbers of the adjacent cells for each cell.
+# weights = A vector of length `adj` giving unnormalized wights associated with each pair of cells. 
+# ncell = An integer value for the number of grid cells for the primary data source (finest resolution)
+# cell = A vector listing the ID numbers of the point-level sampling locations within a particular cell. 
+# nsite = An integer value for the number of point-level sampling locations.
+# forest = A vector of length ncell. This can be any covariate(s) of interest, we used average forest cover in a grid cell.
+
 
 car.data <- list(effort = EE,
                  count = YY,
@@ -66,5 +80,5 @@ out <- bugs(data = car.data,
             n.iter = ni,
             n.burnin = nb,
             bugs.dir = BD,
-            working.directory = here('Output'),
+            working.directory = getwd(),
             debug = F)

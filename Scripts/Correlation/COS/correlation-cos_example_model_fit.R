@@ -11,7 +11,6 @@ BD <-  "path-to-winbugs-on-your-machine"
 
 block <- fread('Data/GridCovariates_CoS.csv')
 coarse.block <- fread('Data/eBird_grid.csv')
-greater_cells <- fread('Data/gridsize_assignment.csv')
 grid1 <- fread('Data/BBA_cleaned.csv')
 load('Data/high.Rdata')
 load('Data/low.Rdata')
@@ -93,5 +92,5 @@ nc = 3
               n.iter = ni,
               n.burnin = nb,
               bugs.dir = BD,
-              working.directory = here('Output'),
+              working.directory = getwd(),
               debug = F)

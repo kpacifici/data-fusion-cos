@@ -1,11 +1,19 @@
 ## Dependencies ##
 require(R2WinBUGS)
+library(data.table)
+library(here)
 
 BD <-  "path-to-winbugs-on-your-machine"
 
 #Load point-level (primary) data, neighborhood information, and grid (secondary) data
-source('Scripts/Shared/COS/data-prep.R') # (ART 4 minutes)
+### See GitHub README for file descripions ###
 
+block <- fread('Data/GridCovariates_CoS.csv')
+coarse.block <- fread('Data/eBird_grid.csv')
+grid1 <- fread('Data/BBA_cleaned.csv')
+load('Data/high.Rdata')
+load('Data/low.Rdata')
+load('Data/grid1.wbnb.Rdata')
 
 ### ### ### ### ### ### ### ### ### ### ### ###
 
@@ -20,7 +28,21 @@ nc = 3
 # Prepare data, set initial values, and indicate which values to be returned from BUGS #
 
 
-  #Bundle data
+#Bundle data
+#Values needed:
+# Y = A vector with length equal to number of sampling locations (nsite) containing information about counts of detections of focal species. Range of Integer value = (0, number of visits)
+# E = A vector with length equal to the number of grid cells (ncell) containing summarized effort for secondary data source
+# W = A vector with length equal to the number of grid cells (ncell) containing summarized effort for secondary data source for grid with coarser resolution than primary data
+# num = A vector of length ncell (number of grid cells) giving the number of neighbors for each cell
+# adj = A vector listing the ID numbers of the adjacent cells for each cell.
+# weights = A vector of length `adj` giving unnormalized wights associated with each pair of cells. 
+# ncell = An integer value for the number of grid cells for the primary data source (finest resolution)
+# cell = A vector listing the ID numbers of the point-level sampling locations within a particular cell. 
+# nsite = An integer value for the number of point-level sampling locations.
+# forest = A vector of length ncell. This can be any covariate(s) of interest, we used average forest cover in a grid cell.
+# ncell_eb = An integer value for the number of grid cells for the secondary data source (coarser resolution than primaryd data source)
+# low = A vector of length ncell. This tells BUGS how many finer cells (ncell) are contained within a coarser cell (ncell_eb)
+# high = A vector of length ncell. This tells BUGS how many finer cells (ncell) are contained within a coarser cell (ncell_eb)
 
   car.data <- list(Y = grid1$total.dets,
                     E = coarse.block$total.eHours,
@@ -62,5 +84,5 @@ nc = 3
               n.iter = ni,
               n.burnin = nb,
               bugs.dir = BD,
-              working.directory = here('Output'),
+              working.directory = getwd(),
               debug = F)
