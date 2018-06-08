@@ -21,8 +21,11 @@ Interest in evaluating how species respond to changing environmental conditions 
    * *grid1.wbnb.Rdata* = Spatial neighborhood information for the finest grid.    
    * *gridsize_assignment.csv* = This file is for Change of Support models. Informs winBUGS which finer grid cells are contained within coarser grid cells.    
    * *high.Rdata* = This file is for Change of Support models. Informs winBUGS how many finer grid cells are within coarser grid cells.    
-   * *low.Rdata* = This file is for Change of Support models. Informs winBUGS how many finer grid cells are within coarser grid cells.    
-2. **Models** - contains winBUGS code for data fusion models    
+   * *low.Rdata* = This file is for Change of Support models. Informs winBUGS how many finer grid cells are within coarser grid cells.   
+   * *coords.Rdata* = This file is for the covariate model. Coordinates of eBird grid cells.  
+   * *EE.Rdata* = This file is for the covariate model. smoothed eBird effort using `mgcv::gam`    
+   * *YY.Rdata* = This file is for the covariate model. Smoothed eBird counts using `mgcv::gam`    
+   2. **Models** - contains winBUGS code for data fusion models    
    * *Shared* - Change of Support (CoS) and No CoS    
    * *Correlation* - CoS and No CoS    
    * *Covariate*    
