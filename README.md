@@ -23,7 +23,7 @@ Interest in evaluating how species respond to changing environmental conditions 
    * *Correlation* - CoS and No CoS    
    * *Covariate*    
    * *Single*     
-3. **Scripts** - folder containing `R` scripts for fitting models
+3. **Scripts** - folder containing `R` scripts for fitting models in winBUGS via `R2WinBUGS`
 
 
 
