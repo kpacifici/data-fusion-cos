@@ -19,7 +19,6 @@ Interest in evaluating how species respond to changing environmental conditions 
    * *GridCovariates_CoS.csv* = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information). This file should be used with the **Change of Support** models. 
    * *GridCovariates_No_CoS.csv* = Grid information containing coordinates for each grid size as well as average forest cover for each grid cell (covariate information). This file should be used with **No Change of Support** models.    
    * *grid1.wbnb.Rdata* = Spatial neighborhood information for the finest grid.    
-   * *gridsize_assignment.csv* = This file is for Change of Support models. Informs winBUGS which finer grid cells are contained within coarser grid cells.    
    * *high.Rdata* = This file is for Change of Support models. Informs winBUGS how many finer grid cells are within coarser grid cells.    
    * *low.Rdata* = This file is for Change of Support models. Informs winBUGS how many finer grid cells are within coarser grid cells.   
    * *coords.Rdata* = This file is for the covariate model. Coordinates of eBird grid cells.  
